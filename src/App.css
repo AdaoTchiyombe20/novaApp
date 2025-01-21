@@ -1,42 +1,95 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root{
+    --cor-verde: #009933;
+    --cor-cinza: #545454;
+    --cor-azul-Padrao: #4A90E2;
+}
+body{
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+#general{
+    width: 800px;
+    border-radius: 40px;
+}
+#step{
+    width: 60px;
+    height: 60px;
+}
+.steps hr{
+    width: 90px;
+    border: 0.1em solid blue;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.steps .hr{
+    width: 90px;
+    border: 0.09em solid var(--cor-verde);
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+.step1{
+    width: 60px;
+    height: 60px;
+    background-color: var(--cor-verde);
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.step1 svg{
+    width: 30px;
+    height: 30px;
 }
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#transaction{
+    width: 90%;
+    height: 50px;
+    padding: 0 15px;
+    border: none;
+    outline: none;
+    border-radius: 25px;
+    background-color: #ECECEC;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+::placeholder{
+    color: var(--cor-cinza);
 }
-
-.card {
-  padding: 2em;
+#buttons button{
+    width: 45%;
+    height: 45px;
+    padding: 0 15px;
+    border-radius: 25px;
+    border: none;
+    outline: none;
 }
-
-.read-the-docs {
-  color: #888;
+#buttons button svg{
+    width: 30px;
+    height: 30px;
+    color: white;
+}
+#buttons{
+    width: 70%;
+}
+@media (max-width: 575px){
+    #buttons{
+        width: 100%;
+    }
+}
+@media (max-width: 400px){
+    .steps hr{
+        width: 60px;
+    }
+    #buttons button{
+        width: 60%;
+        font-size: 12pt;
+    }
+    #buttons button svg{
+        width: 20px;
+        height: 20px;
+    }
 }

@@ -1,0 +1,82 @@
+.main {
+    width: 100%;
+    max-height: 600px;
+    display: flex;
+    justify-content: center;
+}
+
+.forms {
+    width: 70%;
+    height:100%;
+    border: 1px solid;
+
+    .personalData {
+        display: flex;
+        flex-flow: column nowrap;
+        & form {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-flow: column nowrap;
+            gap: 8px;
+
+            & span {
+                font-size: .8rem;
+                width: 80%;
+                padding: 8px;
+                border-radius: 20px;
+                background-color: rgba(175, 172, 172, 0.584);
+            }
+        }
+    }
+    .contacts {
+        display: flex;
+        flex-flow: column nowrap;
+
+        & form {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-flow: column nowrap;
+            gap: 8px;
+
+            & input {
+                font-size: .8rem;
+                width: 80%;
+                padding: 8px;
+                border-radius: 20px;
+                background-color: rgba(175, 172, 172, 0.584);
+                outline: none;
+                border: none;
+            }
+        }
+    }
+    .registrationDetails {
+        
+    }
+
+}
+
+.icons {
+    width: 30%;
+    height:100% ;
+    display: flex;
+    align-items: center;
+    flex-flow: column nowrap;
+
+    & img {
+        width: 50px;
+        height: 50px;
+        border-radius: 10px ;
+        margin-bottom:70px ;
+    }
+
+}
+
+@media (width >= 400px) {
+    .main {
+        max-width: 500px;
+    }
+    
+}
+
