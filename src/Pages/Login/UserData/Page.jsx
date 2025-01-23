@@ -4,24 +4,26 @@ import phone from "../../../icons/phone.png";
 import file from "../../../icons/file.png";
 
 //importação dos estados
-import { useState } from "react";
+import { useRef, useState } from "react";
 
+import { useNavigate } from "react-router-dom";
 
 export default function GetUserDataLogin() {
 
+    const navigate = useNavigate();
+
     const [institute,setInstitute] = useState();
-    const [posicaoInstitute, setPosicaoInstitute] = useState();
     const [course,setCourse] = useState();
-    const [nVagas,setNVagas] = useState();
-    // const cursosImel = ["Robótica","Contabilidade e gestão" , "Finanças" , "Gestão Empresarial"];
-    // const cursosIms = ["Informática","Bioquímica", "Contabilidade" , "Finanças"];
-    // const cursosIpil = ["Contabilidade e gestão","Máquinas e Motores" , "Gestão Empresarial" , "Direito"];
-    // const cursosItel = ["Informática","Contabilidade e gestão" , "Gestão Empresarial" , "Robótica"];
-    // const vagasImel = [30,42,13,64];
-    // const vagasIms = [20,30,60,14];
-    // const vagasIpil = [3,23,33,54];
-    // const vagasItel= [38,12,33,84];
-    
+
+    // pegar as inputs com dados para o usuário iserir
+    const {getEmail, setGetEmail}= useState();
+    const {getPhone, setGetPhone} = useState();
+    const {getPhoneOptional, setGetPhoneOptional} = useState();
+
+    //pegar o botão submeter
+    const submeter = useRef();
+
+
     //Objecto dos cursos e vagas
     const registroInstitute = [
         {
@@ -40,8 +42,7 @@ export default function GetUserDataLogin() {
             curso: ["Informática","Contabilidade e gestão" , "Gestão Empresarial" , "Robótica"],
             vagas: [38,12,33,84]
         },
-    ]
-    
+    ];
     //fUnção que Pega instituição
     function getInstitute(e){
         const value = e.target.value;
@@ -51,7 +52,7 @@ export default function GetUserDataLogin() {
     //função que retorna os curos de uma instituição
      function getCurso() {
         if (institute==2) {
-          const { curso} = registroInstitute[institute-2]; 
+          const { curso} = registroInstitute[0]; 
           return (curso.map((vl, ind) => (
             <option key={ind} value={ind}>
               {vl}
@@ -59,7 +60,7 @@ export default function GetUserDataLogin() {
           )))
         }
         if (institute == 3) {
-          const { curso } = registroInstitute[institute-3]; 
+          const { curso } = registroInstitute[1]; 
           return curso.map((vl, ind) => (
             <option key={ind} value={ind}>
               {vl}
@@ -67,7 +68,15 @@ export default function GetUserDataLogin() {
           ));
         }
         if (institute == 4) {
-          const { curso } = registroInstitute[institute-4]; 
+          const { curso } = registroInstitute[3]; 
+          return curso.map((vl, ind) => (
+            <option key={ind} value={ind}>
+              {vl}
+            </option>
+          ));
+        }
+        if (institute == 5) {
+          const { curso } = registroInstitute[4]; 
           return curso.map((vl, ind) => (
             <option key={ind} value={ind}>
               {vl}
@@ -77,35 +86,50 @@ export default function GetUserDataLogin() {
         else
         return null;
     }
-
     //Função que retorna o curso
     function getCourse(e) {
         const value = e.target.value;
         setCourse(value);
     }
-
+    //Função que pega a quantidade de vagas dos cursos
     function getVagas() {
-        if(course==2){
-            const {vagas} = registroInstitute[course -2];
+        if(course==0){
+            const {vagas} = registroInstitute[0];
             return (
-                <input type="number" value={vagas[0]} placeholder="Número de vagas" className={course ? "col-lg-8 col-md-9 col-sm-11 fw-semibold mb-2" : "d-none"} id="inputs"/>
+                <input type="number" value={vagas[0]} placeholder="Número de vagas" className={course ? "col-lg-8 col-md-9 col-sm-11 fw-semibold mb-2" : "d-none"} id="inputs" disabled/>
+            )
+        }
+        if(course==1){
+            const {vagas} = registroInstitute[1];
+            return (
+                <input type="number" value={vagas[1]} placeholder="Número de vagas" className={course ? "col-lg-8 col-md-9 col-sm-11 fw-semibold mb-2" : "d-none"} id="inputs" disabled/>
+            )
+        }
+        if(course==2){
+            const {vagas} = registroInstitute[2];
+            return (
+                <input type="number" value={vagas[2]} placeholder="Número de vagas" className={course ? "col-lg-8 col-md-9 col-sm-11 fw-semibold mb-2" : "d-none"} id="inputs" disabled/>
             )
         }
         if(course==3){
-            const {vagas} = registroInstitute[course -3];
+            const {vagas} = registroInstitute[3];
             return (
-                <input type="number" value={vagas[1]} placeholder="Número de vagas" className={course ? "col-lg-8 col-md-9 col-sm-11 fw-semibold mb-2" : "d-none"} id="inputs"/>
-            )
-        }
-        if(course==4){
-            const {vagas} = registroInstitute[course -4];
-            return (
-                <input type="number" value={vagas[2]} placeholder="Número de vagas" className={course ? "col-lg-8 col-md-9 col-sm-11 fw-semibold mb-2" : "d-none"} id="inputs"/>
+                <input type="number" value={vagas[3]} placeholder="Número de vagas" className={course ? "col-lg-8 col-md-9 col-sm-11 fw-semibold mb-2" : "d-none"} id="inputs" disabled/>
             )
         }
     }
 
+    function submitValues() {
+        // if(!getEmail && !getPhone)
+        // navigate("/teste")
+        // else {
+        //     alert("Preencha os campos!")
+        // }
 
+        console.log(getEmail)
+        console.log(getPhone)
+        console.log(getPhoneOptional)
+    }
     return (
     <body>
         <main className="py-5">
@@ -138,9 +162,9 @@ export default function GetUserDataLogin() {
                         </div>
                         <div id="personalDataInputs">
                             <div className="row">
-                                <input type="text" placeholder="Nome" className="col-lg-8 col-md-9 col-sm-11 fw-semibold mb-2" id="inputs"/>
-                                <input type="text" placeholder="Sobrenome" className="col-lg-8 col-md-9 col-sm-11 fw-semibold mb-2" id="inputs"/>
-                                <input type="text" placeholder="dd/mm/ano" className="col-lg-8 col-md-9 col-sm-11 fw-semibold mb-2" id="inputs"/>
+                                <input type="text" value={getEmail} onChange={()=> setGetEmail(getEmail)} placeholder="Nome" className="col-lg-8 col-md-9 col-sm-11 fw-semibold mb-2" id="inputs" disabled/>
+                                <input type="text" value={getPhone} onChange={()=> setGetPhone(getPhone)} placeholder="Sobrenome" className="col-lg-8 col-md-9 col-sm-11 fw-semibold mb-2" id="inputs" disabled/>
+                                <input type="text" value={getPhoneOptional} onChange={()=> setGetPhoneOptional(getPhoneOptional)} placeholder="dd/mm/ano" className="col-lg-8 col-md-9 col-sm-11 fw-semibold mb-2" id="inputs" disabled/>
                             </div>
                         </div>
                     </div>
@@ -182,7 +206,7 @@ export default function GetUserDataLogin() {
                     </div>
                 </div>
                 <div className="submit d-flex flex-column justify-content-center mt-3" id="buttons">
-                    <button className="fw-semibold text-light text-bg-info d-flex align-items-center justify-content-between py-0">Submeter<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="white"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></button>
+                    <button ref={submeter} className="fw-semibold text-light text-bg-info d-flex align-items-center justify-content-between py-0" onClick={submitValues}>Submeter<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="white"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></button>
                 </div>
             </div>
         </main>
